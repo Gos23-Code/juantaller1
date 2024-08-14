@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Blank
+      Formulario pss
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -13,8 +13,45 @@
     </ion-toolbar>
   </ion-header>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
-</ion-content>
+  
+    <ion-list>
+      <ion-item>
+        <ion-input class="b-bottom" label="Title:" [counter]="true" minlength="3" 
+        errorText="Minium 3 characters"
+        ngModel
+        [(ngModel)]="Title" (ngModelChange)="ValidRequirement()"></ion-input>
+      </ion-item>
+      
+      <ion-item>
+        <ion-input class="b-bottom" label="Description:" [counter]="true" minlength="10" 
+        errorText="Minium 10 characters"
+        ngModel
+        [(ngModel)]="Description" (ngModelChange)="ValidRequirement()"></ion-input>
+      </ion-item>
+      
+      <form>
+        <ion-grid>
+      <ion-row>
+      <ion-col>
+        <ion-button type="submit "(click)="addTask()" color="success" [disabled]="!Repp">Add</ion-button>
+      </ion-col>
+      </ion-row>
+      </ion-grid>
+      </form>
+       </ion-list>
+
+       <ion-list *ngIf="Jtask.length > 0; else noResult">
+        <ion-item *ngFor="let JJtask1 of Jtask">
+          <ion-label>
+            <h1>{{ JJtask1.title }}</h1>
+            <p>{{ JJtask1.description }}</p>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    
+      <ng-template #noResult>
+        <p>Por Favor Agregar Algo</p>
+      </ng-template>
+
+
+     </ion-content> 
